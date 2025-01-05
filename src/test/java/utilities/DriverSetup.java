@@ -32,7 +32,7 @@ public class DriverSetup {
                 .amend("platformName", "android")
                 .amend("appium:automationName", "UiAutomator2")
                 .amend("appium:uiautomator2ServerInstallationTimeout",60000)
-                .amend("appium:MobileCapabilityType.APP",System.getProperty("user.dir")+"/src/test/resources/ApiDemos-debug.apk")
+                .amend("appium:MobileCapabilityType.APP",System.getProperty("user.dir")+"/src/test/resources/" + appName)
                 //.amend("appium:deviceName", "pixel9")
                 //.amend("appium:udid", "emulator-5554")
                 .amend("appium:ensureWebviewsHavePages", true)
