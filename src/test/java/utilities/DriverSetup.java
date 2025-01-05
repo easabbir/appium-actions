@@ -2,6 +2,7 @@ package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -12,7 +13,7 @@ import java.time.Duration;
 
 
 public class DriverSetup {
-    public static String appName = System.getProperty("app", "3.0.1+1500030-debug.apk");
+    public static String appName = System.getProperty("APP", "ApiDemos-debug.apk");
 
     File f = new File("src/test/resources");
     public static final ThreadLocal<AndroidDriver> LOCAL_DRIVER = new ThreadLocal<>();
@@ -38,13 +39,15 @@ public class DriverSetup {
                 .amend("appium:nativeWebScreenshot", true)
                 .amend("appium:newCommandTimeout", 3600)
                 .amend("appium:connectHardwareKeyboard", true)
-                //.amend("appium:app", apk.getAbsoluteFile())
-                .amend("appium:appPackage", "io.appium.android.apis")
-               .amend("appium:appActivity", "io.appium.android.apis.ApiDemos");
+                .amend("appium:app", System.getProperty("user.dir") + "/src/test/resources/ApiDemos-debug.apk");
+//                .amend("appium:appPackage", "io.appium.android.apis")
+//                .amend("appium:appActivity", "io.appium.android.apis.ApiDemos");
+
 
         URL remoteURL = new URL("http://127.0.0.1:4723/");
         AndroidDriver driver = new AndroidDriver(remoteURL, options);
         return driver;
+
     }
 
     public static void restartFreshApp() throws MalformedURLException {

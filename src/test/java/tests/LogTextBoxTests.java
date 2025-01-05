@@ -14,5 +14,6 @@ public class LogTextBoxTests extends DriverSetup {
         textPage.navigateToLogTextBox();
         textPage.clickOnElement(textPage.ADD);
 
+
     }
 }
