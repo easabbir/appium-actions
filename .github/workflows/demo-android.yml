@@ -19,12 +19,4 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew connectedCheck
-
-      - name: wait for emulator to be ready
-        run: |
-          sleep 30
-          adb devices
-
-      - name: run appium android tests
-        run: mvn clean test -Pandroid
+          script: mvn clean test -Pandroid
