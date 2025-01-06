@@ -4,7 +4,7 @@ on: push
 
 jobs:
   run-mobile-tests:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: setup java
