@@ -34,13 +34,16 @@ jobs:
           target: google_apis
           arch: x86_64
           script: |
+            sleep 60
             adb wait-for-device
             adb shell input keyevent 82
+            adb devices
+            mvn clean test
 
-      - name: wait for emulator to be ready
-        run: |
-          sleep 30
-          adb devices
+      # - name: wait for emulator to be ready
+      #   run: |
+      #     sleep 60
+      #     adb devices
 
-      - name: run appium android tests
-        run: mvn clean test
+      # - name: run appium android tests
+      #   run: mvn clean test
