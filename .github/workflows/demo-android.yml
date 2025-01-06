@@ -3,34 +3,23 @@ name: run android tests in github runner
 on: push
 
 jobs:
-  run-android-mobile-tests:
-    runs-on: macos-latest
-
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: setup java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: pull the project in to the runner
+      - name: checkout
         uses: actions/checkout@v4
 
-      - name: setup appium
+      - name: Enable KVM
         run: |
-          npm install -g appium@v1.22
-          appium -v
-          appium &>/dev/null &
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
 
-      - name: start android emulator
+      - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          target: google_apis
-          arch: arm64-v8a
-          script: |
-            adb wait-for-device
-            adb shell input keyevent 82
+          script: ./gradlew connectedCheck
 
       - name: wait for emulator to be ready
         run: |
