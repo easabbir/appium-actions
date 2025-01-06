@@ -23,7 +23,6 @@ jobs:
           appium &>/dev/null &
 
       - name: start android emulator
-        uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           target: google_apis_arm64_v8a
