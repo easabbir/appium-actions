@@ -2,6 +2,8 @@ package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
+import io.appium.java_client.service.local.AppiumDriverLocalService;
+import io.appium.java_client.service.local.AppiumServiceBuilder;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,6 +16,7 @@ import java.time.Duration;
 
 public class DriverSetup {
     public static String appName = System.getProperty("APP", "ApiDemos-debug.apk");
+    private static AppiumDriverLocalService appiumService;
 
     File f = new File("src/test/resources");
     public static final ThreadLocal<AndroidDriver> LOCAL_DRIVER = new ThreadLocal<>();
@@ -24,6 +27,27 @@ public class DriverSetup {
 
     public static void setApp(AndroidDriver driver) {
         DriverSetup.LOCAL_DRIVER.set(driver);
+    }
+
+    // Start Appium server programmatically
+    public static void startAppiumServer() {
+        if (appiumService == null) {
+            appiumService = new AppiumServiceBuilder()
+                    .usingPort(4723)                                    // Set Appium server port
+                    .withLogFile(new File("appium_server_logs.txt"))    // Set log file
+                    .withArgument(() -> "--relaxed-security")           // Allow non-standard capabilities
+                    .build();
+        }
+        appiumService.start();
+        System.out.println("Appium server started...");
+    }
+
+    // Stop Appium server
+    public static void stopAppiumServer() {
+        if (appiumService != null && appiumService.isRunning()) {
+            appiumService.stop();
+            System.out.println("Appium server stopped...");
+        }
     }
 
     public AndroidDriver getDriver(String appName) throws MalformedURLException {
@@ -39,7 +63,7 @@ public class DriverSetup {
                 .amend("appium:nativeWebScreenshot", true)
                 .amend("appium:newCommandTimeout", 3600)
                 .amend("appium:connectHardwareKeyboard", true)
-                .amend("appium:app", System.getProperty("user.dir") + "/src/test/resources/ApiDemos-debug.apk");
+                .amend("appium:app", System.getProperty("user.dir")+"/src/test/resources/" + appName);
 //                .amend("appium:appPackage", "io.appium.android.apis")
 //                .amend("appium:appActivity", "io.appium.android.apis.ApiDemos");
 
@@ -60,6 +84,7 @@ public class DriverSetup {
 
     @BeforeClass
     public void startApplication() throws MalformedURLException {
+        startAppiumServer(); // Start the Appium server
         AndroidDriver driver = getDriver(appName);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         setApp(driver);
@@ -69,6 +94,7 @@ public class DriverSetup {
     @AfterClass
     public void quitApplication(){
         getApp().quit();
+        stopAppiumServer(); // Stop the Appium server
     }
 
 }
