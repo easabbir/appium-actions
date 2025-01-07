@@ -29,7 +29,7 @@ public class DriverSetup {
     public AndroidDriver getDriver(String appName) throws MalformedURLException {
         File apk = new File(f, appName);
         var options = new BaseOptions()
-                .amend("platformName", "android")
+                .amend("platformName", "Android")
                 .amend("appium:automationName", "UiAutomator2")
                 .amend("appium:uiautomator2ServerInstallationTimeout",60000)
                 .amend("appium:MobileCapabilityType.APP",System.getProperty("user.dir")+"/src/test/resources/" + appName)
