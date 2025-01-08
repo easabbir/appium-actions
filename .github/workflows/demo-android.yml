@@ -27,6 +27,7 @@ jobs:
           appium -v
           appium driver list --installed
           appium driver install uiautomator2
+          npm install allure-commandline --save-dev
 
       - name: start android emulator
         uses: reactivecircus/android-emulator-runner@v2
@@ -39,7 +40,7 @@ jobs:
             adb shell input keyevent 82
             adb devices
             mvn clean test
-            allure generate ./allure-results --clean
+            allure generate allure-results --clean -o allure-report
             allure open ./allure-report/
 
       # - name: wait for emulator to be ready
