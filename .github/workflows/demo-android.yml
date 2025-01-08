@@ -36,12 +36,15 @@ jobs:
           arch: x86_64
           script: |
             npm install allure-commandline --save-dev
-            adb wait-for-device
-            adb shell input keyevent 82
-            adb devices
-            mvn clean test
-            allure generate allure-results --clean -o allure-report
-            allure open ./allure-report/
+            npm list -g allure-commandline
+            npm bin -g
+            ls ./node_modules/.bin
+            cd /usr/local/bin
+            ls ./node_modules/.bin
+            ls
+            pwd
+
+
 
       # - name: wait for emulator to be ready
       #   run: |
@@ -51,3 +54,9 @@ jobs:
       # - name: run appium android tests
       #   run: mvn clean test
       # appium &>/dev/null &
+      # adb wait-for-device
+      # adb shell input keyevent 82
+      # adb devices
+      # mvn clean test
+      # allure generate allure-results --clean -o allure-report
+      # allure open ./allure-report/
