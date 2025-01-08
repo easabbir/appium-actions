@@ -35,11 +35,12 @@ jobs:
           target: google_apis
           arch: x86_64
           script: |
-            appium &>/dev/null &
             adb wait-for-device
             adb shell input keyevent 82
             adb devices
             mvn clean test
+            allure generate ./allure-results --clean
+            allure open ./allure-report/
 
       # - name: wait for emulator to be ready
       #   run: |
@@ -48,3 +49,4 @@ jobs:
 
       # - name: run appium android tests
       #   run: mvn clean test
+      # appium &>/dev/null &
