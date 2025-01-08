@@ -60,10 +60,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-
       # - 
       #       allure generate allure-results --clean -o allure-report
       #       allure open ./allure-report/
