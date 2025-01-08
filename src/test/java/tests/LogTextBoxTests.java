@@ -1,6 +1,7 @@
 package tests;
 
 import io.qameta.allure.Description;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.TextPage;
 import utilities.DriverSetup;
@@ -15,5 +16,10 @@ public class LogTextBoxTests extends DriverSetup {
         textPage.clickOnElement(textPage.ADD);
 
 
+    }
+
+    @AfterMethod
+    public void takesScreenshot(){
+        textPage.addScreenshot("LogTextBoxTests");
     }
 }

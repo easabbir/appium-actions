@@ -4,12 +4,14 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
@@ -247,6 +249,7 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(getApp(), Duration.ofSeconds(maximum_timeout));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
     public void waitForClickableOfElement(By locator, int maximum_timeout) {
         WebDriverWait wait = new WebDriverWait(getApp(), Duration.ofSeconds(maximum_timeout));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
@@ -343,6 +346,10 @@ public class BasePage {
         }
 
         return randomWord.toString();
+    }
+
+    public void addScreenshot(String name) {
+        Allure.addAttachment(name, new ByteArrayInputStream(((TakesScreenshot) getApp()).getScreenshotAs(OutputType.BYTES)));
     }
 
 }
