@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Sun Jan 05 06:14:20 GMT 2025","Sun Jan 05 06:14:25 GMT 2025","5014","Default Suite","appium-with-cicd","tests.openApp","tests.openApp","openApp","openApp","This test verifies installation of app in emulator"
+"passed","Sun Jan 05 06:51:37 GMT 2025","Sun Jan 05 06:51:42 GMT 2025","5003","Default Suite","appium-with-cicd","tests.OpenApp","tests.OpenApp","openAppWithInstallation","openAppWithInstallation","This test verifies installation of app in emulator"
+"passed","Mon Jan 13 09:51:58 GMT 2025","Mon Jan 13 09:52:01 GMT 2025","2418","All Test Suite","src/test/java/tests","tests.LogTextBoxTests","tests.LogTextBoxTests","openAppWithInstallation","openAppWithInstallation","This test verifies LogTextBox"
