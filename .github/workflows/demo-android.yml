@@ -63,15 +63,3 @@ jobs:
           github_token: ${{ secrets.TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
-      # - 
-      #       allure generate allure-results --clean -o allure-report
-      #       allure open ./allure-report/
-
-      # - name: wait for emulator to be ready
-      #   run: |
-      #     sleep 60
-      #     adb devices
-
-      # - name: run appium android tests
-      #   run: mvn clean test
-      # appium &>/dev/null &
