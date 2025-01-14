@@ -5,9 +5,11 @@
           name="src/test/java/tests">
         <classes>
             <class name="tests.LogTextBoxTests">
-                <methods>
-                    <include name="openAppWithInstallation"/>
-                </methods>
+<!--                <methods>-->
+<!--                    <include name="openAppWithInstallation"/>-->
+<!--                </methods>-->
+            </class>
+            <class name="tests.LinkyfyTests">
             </class>
         </classes>
     </test>
