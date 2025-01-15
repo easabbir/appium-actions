@@ -18,6 +18,6 @@ we can run the android tests in the github runner itself and it can save a lot o
 Generating report
 
     allure generate ./allure-results --clean
-Display report using server
+Display report using server 
 
     allure open ./allure-report/ 
