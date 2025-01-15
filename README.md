@@ -20,4 +20,4 @@ Generating report
     allure generate ./allure-results --clean
 Display report using server
 
-    allure open ./allure-report/
+    allure open ./allure-report/ 
