@@ -1,0 +1,6 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Jan 15 09:00:51 GMT 2025","Wed Jan 15 09:00:54 GMT 2025","2507","All Test Suite","src/test/java/tests","tests.LinkyfyTests","tests.LinkyfyTests","linkifyTests","linkifyTests","This test verifies Linkyfy"
+"passed","Sun Jan 05 07:48:50 GMT 2025","Sun Jan 05 07:48:55 GMT 2025","5086","Default Suite","appium-with-cicd","tests.LogTextBoxTests","tests.LogTextBoxTests","openAppWithInstallation","openAppWithInstallation","This test verifies LogTextBox"
+"passed","Sun Jan 05 06:14:20 GMT 2025","Sun Jan 05 06:14:25 GMT 2025","5014","Default Suite","appium-with-cicd","tests.openApp","tests.openApp","openApp","openApp","This test verifies installation of app in emulator"
+"passed","Wed Jan 15 09:00:42 GMT 2025","Wed Jan 15 09:00:44 GMT 2025","2053","All Test Suite","src/test/java/tests","tests.LogTextBoxTests","tests.LogTextBoxTests","testsLogTextBox","testsLogTextBox","This test verifies LogTextBox"
+"passed","Sun Jan 05 06:51:37 GMT 2025","Sun Jan 05 06:51:42 GMT 2025","5003","Default Suite","appium-with-cicd","tests.OpenApp","tests.OpenApp","openAppWithInstallation","openAppWithInstallation","This test verifies installation of app in emulator"
