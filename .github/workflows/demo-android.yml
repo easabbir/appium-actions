@@ -6,60 +6,60 @@ jobs:
   run-mobile-tests:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Enable KVM
-        run: |
-          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-          sudo udevadm control --reload-rules
-          sudo udevadm trigger --name-match=kvm
-      - name: setup java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: pull the project in to the runner
-        uses: actions/checkout@v4
-
-      - name: setup appium
-        run: |
-          npm install -g appium
-          appium -v
-          appium driver list --installed
-          appium driver install uiautomator2
-
-      - name: start android emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 25
-          target: google_apis
-          arch: x86_64
-          script: |
-            adb wait-for-device
-            adb shell input keyevent 82
-            adb devices
-            mvn clean test
-
-      - name: Load test report history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        if: always()
-        with:
-          gh_pages: gh-pages
-          allure_history: allure-history
-          allure_results: allure-results
-
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+#    steps:
+#      - name: Enable KVM
+#        run: |
+#          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+#          sudo udevadm control --reload-rules
+#          sudo udevadm trigger --name-match=kvm
+#      - name: setup java
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'temurin'
+#          java-version: '17'
+#
+#      - name: pull the project in to the runner
+#        uses: actions/checkout@v4
+#
+#      - name: setup appium
+#        run: |
+#          npm install -g appium
+#          appium -v
+#          appium driver list --installed
+#          appium driver install uiautomator2
+#
+#      - name: start android emulator
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 25
+#          target: google_apis
+#          arch: x86_64
+#          script: |
+#            adb wait-for-device
+#            adb shell input keyevent 82
+#            adb devices
+#            mvn clean test
+#
+#      - name: Load test report history
+#        uses: actions/checkout@v3
+#        if: always()
+#        continue-on-error: true
+#        with:
+#          ref: gh-pages
+#          path: gh-pages
+#
+#      - name: Build test report
+#        uses: simple-elf/allure-report-action@v1.7
+#        if: always()
+#        with:
+#          gh_pages: gh-pages
+#          allure_history: allure-history
+#          allure_results: allure-results
+#
+#      - name: Publish test report
+#        uses: peaceiris/actions-gh-pages@v3
+#        if: always()
+#        with:
+#          github_token: ${{ secrets.TOKEN }}
+#          publish_branch: gh-pages
+#          publish_dir: allure-history
